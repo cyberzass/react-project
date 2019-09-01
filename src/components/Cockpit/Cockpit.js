@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import classes from './Cockpit.module.css';
 
 const cockpit = (props) => {
+  const toggleBtnRef = useRef(null);
+
+  useEffect(() => {
+    toggleBtnRef.current.click();
+  }, []);
+
   let assignedClasses = [];
   let btnClass = '';
 
@@ -19,8 +25,10 @@ const cockpit = (props) => {
 
   return (
     <div className={classes.Cockpit}>
+      <h1>{props.title}</h1>
       <p className={assignedClasses.join(' ')}>This is a text.</p>
       <button
+        ref={toggleBtnRef}
         className={btnClass}
         onClick={props.clicked}>Toggle Persons</button>
     </div>
